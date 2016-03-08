@@ -1,0 +1,108 @@
+<html>
+
+<head>
+  <title>JavaScript Guessing Game</title>
+  <style>
+    div {
+      width: 500px;
+      height: 500px;
+      position: absolute;
+    }
+
+    img {
+      width: 75;
+      height: 75;
+      position: absolute;
+    }
+
+    #leftside {
+      border-right: 1px solid black;
+    }
+
+    #rightside {
+      left: 500px;
+    }
+  </style>
+  <script type="text/javascript">
+    var numberOfFace = 4;
+    var level=2;
+    var wr = function() {
+      return function() {
+        alert("Game Over");
+        undochild("leftside");
+        undochild("rightside");
+
+      }
+    };
+    var cr = function() {
+      return function() {
+        alert("Congradulations!!\n\n go to level "+level+" !!!!");
+        deleteallchild("leftside");
+        deleteallchild("rightside");
+        numberOfFace += 5;
+        level++;
+        generateFaces();
+      }
+    };
+
+    function undochild(parentid) {
+      var f = document.getElementById(parentid);
+      var childs = f.childNodes;
+      for (var i = childs.length - 1; i > -1; i--) {
+        childs[i].onclick=null;
+      }
+    }
+
+    function deleteallchild(parentid) {
+      var f = document.getElementById(parentid);
+      var childs = f.childNodes;
+      for (var i = childs.length - 1; i > -1; i--) {
+        f.removeChild(childs[i]);
+      }
+    }
+
+    function generateFaces() {
+      var i=numberOfFace;
+      while (i > 0) {
+        addImages("leftside","rightside").onclick=wr();
+        i--;
+      }
+      addImages("leftside",null).onclick=cr();
+    }
+
+    function addImages(parentid1,parentid2) {
+      var marginleft = Math.floor(Math.random() * (500 - 75));
+      var margintop = Math.floor(Math.random() * (500 - 75));
+      //no.1
+      var newimg1 = document.createElement("img");
+      newimg1.src = "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Emotes-face-smile-icon.png";
+      newimg1.style.top = marginleft;
+      newimg1.style.left = margintop;
+      var currentDiv1 = document.getElementById(parentid1);
+      currentDiv1.appendChild(newimg1);
+      //no.2
+      if(parentid2!=null){
+      var newimg2 = document.createElement("img");
+      newimg2.src = "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Emotes-face-smile-icon.png";
+      newimg2.style.top = marginleft;
+      newimg2.style.left = margintop;
+      var currentDiv2 = document.getElementById(parentid2);
+      currentDiv2.appendChild(newimg2);}
+      //return
+      return newimg1;
+    }
+  </script>
+</head>
+
+<body onload="generateFaces()">
+  <h1>
+Matching Game
+  </h1>
+  <p>Click on the extra smiling face on the left</p>
+  <div id="leftside">
+  </div>
+  <div id="rightside">
+  </div>
+</body>
+
+</html>

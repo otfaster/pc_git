@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="tao's_page" content="test"/>
+		<title>My Dating website</title>
+		<style>
+			fieldset{
+			background-color:lightyellow;
+			border:10px solid yellow;
+			width:720px;}
+			label:hover { font-size:40px }
+			input:hover { font-size:40px;}
+			label{
+			width:180px;
+			display:inline-block;
+			text-align:right;
+			vertical-align:top;}
+			.t1{width:auto;}
+			.t2{
+	        background:red;
+			width:auto;
+			color:white;
+			}
+			.t22{
+	        background:purple;
+			color:white;
+			width:auto;
+			}
+			.t3{
+			 width:360px;
+			 height:50px;
+			}
+		</style>
+		<script  language="javascript">
+		window.onload = function() {
+			var files = document.querySelectorAll("input[type=file]");
+			files[0].addEventListener("change", function(e) {
+			if(this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) { document.getElementById("user_avatar_preview").setAttribute("src", e.target.result); }
+            reader.readAsDataURL(this.files[0]);
+				}
+			});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Please Enter Your Details For Our Dating WebSite!</h1>
+		<form action="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php" 
+            method="post" enctype="multipart/form-data">
+		<fieldset>
+			<legend>Your Face</legend>
+			<p><label for="user_avatar">Your image:</label><input type="file" id="user_avatar" name="avatar" accept="image/*" onchange="showImg()" required></p>
+            <p><label for="user_avatar_preview">Image preview:</label><img id="user_avatar_preview" width="160" hright="120"></img></p>
+		</fieldset>
+		<fieldset>
+			<legend>Your General Details</legend>
+			 <p><label for="user_name">Name: </label><input type="text" name="user_name" id="user_name" required></p>
+			 <p class="t1"><label for="user_ismale">Gender: </label><input id="user_ismale" type="radio" name="gender" value="male" required><label class="t1">Male</label><input type="radio" id="user_isfemale" name="gender" value="female" required><label class="t1">Female</label></p>
+			 <p><label for="user_age">Age: </label><input name="user_age" type="number" id="user_age" required></p>
+			 <p><label for="user_birth_date">Date of birth: </label><input name="user_birth_date" type="date" id="user_birth_date"></p>
+			 <p><label for="user_favorite_color">Favorite color: </label><input name="user_favorite_color" type="color" id="user_favorite_color"></p>
+			 <p><label for="user_country">Country: </label>
+			 <select id="user_country" name="user_country">
+			    <option value="void"></option>
+				<option value="China">China</option>
+				<option value="USA">USA</option>
+				<option value="Mexico">Mexico</option>
+				<option value="Japan">Japan</option>
+				<option value="Fiji">Fiji</option>
+				<option value="Australia">Australia</option>
+			</select></p>
+		</fieldset>
+		<fieldset>
+			<legend>Your Indicators</legend>
+			<p><label for="user_height">Height:</label><label class="t2">Short</label><input name="user_height" type="range" min="0" max='100' id="user_height"><label class="t22">Tall</label></p>
+			<p><label for="user_rich">Salary:</label><label class="t2">Poor</label><input name="user_rich" type="range" min="0" max='100' id="user_rich"><label class="t22">Rich</label></p>
+		</fieldset>
+		<fieldset>
+			<legend>Your Contact Information</legend>
+			<p><label for="user_email">E-mail: </label><input name="user_email" type="email" id="user_email" required></p>
+			<p><label for="user_tele">Telephone: </label><input name="user_tele" type="tel" id="user_tele"></p>
+			<p><label for="user_address">Address:</label><textarea class="t3" name="user_address" id="user_address"></textarea></p>
+			<p class="t1"><label for="user_want_email">Method to contact you:</label>
+			<input name="user_want_email" type="checkbox" id="user_want_email"><label class="t1">Email</label>
+			<input name="user_want_Whatsapp" type="checkbox" id="user_want_Whatsapp"><label class="t1">Whatsapp</label>
+			<input name="user_want_inapp" type="checkbox" id="user_want_inapp"><label class="t1">In-app chat</label></p>
+		</fieldset>
+		<input type="submit">
+		</form>
+		</body>
+	    </html>
